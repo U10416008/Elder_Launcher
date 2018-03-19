@@ -2,11 +2,17 @@ package com.example.dingjie.elder_launcher
 
 import android.content.Intent
 import android.content.res.Resources
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import kotlinx.coroutines.experimental.android.UI
+import org.jetbrains.anko.*
 
 import java.net.Socket
 
@@ -21,8 +27,8 @@ class MainActivity : AppCompatActivity() {
     internal lateinit var game: ImageView
     override fun onCreate(savedIntanceState: Bundle?) {
         super.onCreate(savedIntanceState)
-        setContentView(R.layout.activity_main)
-        button = findViewById(R.id.button)
+        MainActivityUI().setContentView(this)
+        button = find<Button>(R.id.button)
 
         button.setOnClickListener { }
         initChat()
@@ -32,8 +38,9 @@ class MainActivity : AppCompatActivity() {
         initServer()
 
     }
+
     fun initChat() {
-        chat = findViewById(R.id.chats)
+        chat = find(R.id.chat)
         chat.layoutParams.height = screenHeight / 3
         chat.layoutParams.width = screenWidth / 3
         chat.setOnClickListener {
@@ -44,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         chat.setOnLongClickListener { false }
     }
     fun initGame() {
-        game = findViewById(R.id.game)
+        game = find(R.id.game)
         game.layoutParams.height = screenHeight / 3
         game.layoutParams.width = screenWidth / 3
         game.setOnClickListener {
@@ -55,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         game.setOnLongClickListener { false }
     }
     fun initContacts() {
-        contact = findViewById(R.id.contacts)
+        contact = find(R.id.contacts)
         contact.layoutParams.height = screenHeight / 3
         contact.layoutParams.width = screenWidth / 3
         contact.setOnClickListener {
@@ -67,7 +74,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun initMore() {
-        more = findViewById(R.id.more)
+        more = find(R.id.more)
         more.layoutParams.height = screenHeight / 3
         more.layoutParams.width = screenWidth / 3
         more.setOnClickListener {
